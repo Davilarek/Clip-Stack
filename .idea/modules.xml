@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TinyClipboards.iml" filepath="$PROJECT_DIR$/TinyClipboards.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Clip-Stack.iml" filepath="$PROJECT_DIR$/.idea/modules/Clip-Stack.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Clip-Stack.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Clip-Stack.app.iml" />
     </modules>
   </component>
 </project>
-
