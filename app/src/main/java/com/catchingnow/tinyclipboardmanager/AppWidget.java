@@ -1,5 +1,6 @@
 package com.catchingnow.tinyclipboardmanager;
 
+import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -40,6 +41,7 @@ public class AppWidget extends AppWidgetProvider {
         // Enter relevant functionality for when the last widget is disabled
     }
 
+    @SuppressLint("ResourceType")
     private static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                         int appWidgetId) {
         SharedPreferences preference = PreferenceManager.getDefaultSharedPreferences(context);

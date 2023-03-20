@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.catchingnow.tinyclipboardmanager" >
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.catchingnow.tinyclipboardmanager">
 
-    <uses-permission android:name="android.permission.BROADCAST_CLOSE_SYSTEM_DIALOGS" />
+    <uses-permission
+        android:name="android.permission.BROADCAST_CLOSE_SYSTEM_DIALOGS"
+        tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-<!--    <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE" />-->
 
-<!--     <uses-permission android:name="android.permission.VIBRATE" /> -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE"
+        tools:ignore="ProtectedPermissions" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:backupAgent=".GoogleBackupAgent"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.android.backup.api_key"
             android:value="AEdPqrEAAAAImD2xzM1mjVqrMOV7G1_ccLkNvpmbu8KPJ5XeJg" />
@@ -22,7 +31,7 @@
         <service
             android:name=".CBWatcherService"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.catchingnow.tinyclipboardmanager.CBWatcherService" />
             </intent-filter>
@@ -35,7 +44,7 @@
         <receiver
             android:name=".LaunchServiceAtStartup"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
@@ -47,9 +56,9 @@
 
         <activity
             android:name=".ActivityMain"
+            android:exported="false"
             android:label="@string/title_activity_main"
-            android:launchMode="singleTop"
-            android:exported="false">
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
                 <action android:name="android.intent.action.MAIN" />
@@ -59,17 +68,16 @@
         </activity>
         <activity
             android:name=".ActivityMainDialog"
+            android:documentLaunchMode="intoExisting"
             android:excludeFromRecents="true"
+            android:exported="true"
             android:label="@string/title_activity_main"
             android:launchMode="singleInstance"
-            android:documentLaunchMode="intoExisting"
-            android:exported="true"
-            android:theme="@style/AppDialogTheme" >
-        </activity>
+            android:theme="@style/AppDialogTheme"></activity>
         <activity
             android:name=".ActivitySetting"
-            android:label="@string/title_activity_activity_setting"
             android:exported="true"
+            android:label="@string/title_activity_activity_setting"
             android:theme="@style/AppTheme">
             <!-- android:documentLaunchMode="intoExisting" -->
             <!-- android:parentActivityName=".ActivityMain" -->
@@ -86,10 +94,10 @@
         <activity
             android:name=".ActivityEditor"
             android:documentLaunchMode="always"
+            android:exported="true"
             android:label="@string/title_activity_activity_get_share_text"
             android:maxRecents="1"
-            android:exported="true"
-            android:theme="@style/AppDialogWhenLargeTheme" >
+            android:theme="@style/AppDialogWhenLargeTheme">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
 
@@ -102,7 +110,7 @@
             android:name=".ActivityBackup"
             android:label="@string/title_activity_backup"
             android:parentActivityName=".ActivityMain"
-            android:theme="@style/AppDialogWhenLargeTheme" >
+            android:theme="@style/AppDialogWhenLargeTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.catchingnow.tinyclipboardmanager.ActivityMain" />
@@ -111,13 +119,15 @@
             android:name=".ActivityBackupNew"
             android:label="@string/title_activity_new_backup"
             android:parentActivityName=".ActivityBackup"
-            android:theme="@style/AppDialogWhenLargeTheme" >
+            android:theme="@style/AppDialogWhenLargeTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.catchingnow.tinyclipboardmanager.ActivityBackup" />
         </activity>
 
-        <receiver android:name=".AppWidget" android:exported="true" >
+        <receiver
+            android:name=".AppWidget"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -134,13 +144,12 @@
         <service
             android:name=".FloatingWindowService"
             android:enabled="true"
-            android:exported="true" >
-        </service>
+            android:exported="true"></service>
         <service
             android:name=".ExperienceEnhanceService"
-            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
             </intent-filter>

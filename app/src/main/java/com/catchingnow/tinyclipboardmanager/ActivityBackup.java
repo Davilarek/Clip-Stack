@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -137,7 +138,7 @@ public class ActivityBackup extends MyActionBarActivity {
             backupContent.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    v.playSoundEffect(0);
+                    v.playSoundEffect(SoundEffectConstants.CLICK);
                     backupObject.openInEditor();
                     return true;
                 }

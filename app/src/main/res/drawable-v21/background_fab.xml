@@ -1,4 +1,5 @@
-<transition xmlns:android="http://schemas.android.com/apk/res/android">
+<transition xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <ripple
             android:color="?android:colorControlHighlight">
@@ -6,7 +7,8 @@
                 <shape android:shape="oval">
                     <solid
                         android:id="@+id/fab_color"
-                        android:color="@color/fab" />
+                        android:color="@color/fab"
+                        tools:ignore="DuplicateIds" />
                 </shape>
             </item>
         </ripple>
@@ -19,7 +21,8 @@
                 <shape android:shape="oval">
                     <solid
                         android:id="@+id/fab_color"
-                        android:color="@color/fab_starred" />
+                        android:color="@color/fab_starred"
+                        tools:ignore="DuplicateIds" />
                 </shape>
             </item>
         </ripple>

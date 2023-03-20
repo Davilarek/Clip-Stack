@@ -26,6 +26,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -741,7 +742,8 @@ public class ActivityMain extends MyActionBarActivity {
         Thread.sleep(50);
         db.modifyClip(null, getString(R.string.first_launch_clipboards_2, "🙋"));
         Thread.sleep(50);
-        db.modifyClip(null, getString(R.string.first_launch_clipboards_1, "😄"), 1);
+//        db.modifyClip(null, getString(R.string.first_launch_clipboards_1, "😄"), 1);
+        db.modifyClip(null, getString(R.string.first_launch_clipboards_1), 1);
         Thread.sleep(50);
         db.modifyClip(null, getString(R.string.first_launch_clipboards_0, "😄"), 1);
 //        BackupManager backupManager = new BackupManager(this);
@@ -806,7 +808,7 @@ public class ActivityMain extends MyActionBarActivity {
         button.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                v.playSoundEffect(0);
+                v.playSoundEffect(SoundEffectConstants.CLICK);
                 Intent openIntent = new Intent(context, ClipObjectActionBridge.class)
                         .putExtra(Intent.EXTRA_TEXT, clipObject.getText())
                         .putExtra(ClipObjectActionBridge.STATUE_IS_STARRED, clipObject.isStarred())
