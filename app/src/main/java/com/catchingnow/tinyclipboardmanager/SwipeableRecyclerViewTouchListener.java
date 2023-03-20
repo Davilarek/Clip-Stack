@@ -23,14 +23,18 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.SystemClock;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+//import android.support.annotation.NonNull;
+//import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
+import android.view.SoundEffectConstants;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,7 +42,7 @@ import java.util.List;
 
 
 /**
- * A {@link View.OnTouchListener} that makes the list items in a {@link android.support.v7.widget.RecyclerView}
+ * A {@link View.OnTouchListener} that makes the list items in a {@link androidx.recyclerview.widget.RecyclerView}
  * dismissable by swiping.
  * <p/>
  * <p>Example usage:</p>
@@ -98,7 +102,7 @@ public class SwipeableRecyclerViewTouchListener implements RecyclerView.OnItemTo
     private int mBgID;
 
     /**
-     * Constructs a new swipe touch listener for the given {@link android.support.v7.widget.RecyclerView}
+     * Constructs a new swipe touch listener for the given {@link androidx.recyclerview.widget.RecyclerView}
      *
      * @param recyclerView The recycler view whose items should be dismissable by swiping.
      * @param listener     The listener for the swipe events.
@@ -153,6 +157,11 @@ public class SwipeableRecyclerViewTouchListener implements RecyclerView.OnItemTo
     @Override
     public void onTouchEvent(RecyclerView rv, MotionEvent motionEvent) {
         handleTouchEvent(motionEvent);
+    }
+
+    @Override
+    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
     }
 
     private boolean handleTouchEvent(MotionEvent motionEvent) {
@@ -392,7 +401,7 @@ public class SwipeableRecyclerViewTouchListener implements RecyclerView.OnItemTo
                         deleteAble[0] = false;
                         --mDismissAnimationRefCount;
                         mPendingDismisses.remove(pendingDismissData);
-                        backgroundView.playSoundEffect(0);
+                        backgroundView.playSoundEffect(SoundEffectConstants.CLICK);
                         backgroundView.setOnTouchListener(null);
                 }
                 return false;
@@ -413,7 +422,7 @@ public class SwipeableRecyclerViewTouchListener implements RecyclerView.OnItemTo
         /**
          * Called when the item has been dismissed by swiping to the left.
          *
-         * @param recyclerView           The originating {@link android.support.v7.widget.RecyclerView}.
+         * @param recyclerView           The originating {@link androidx.recyclerview.widget.RecyclerView}.
          * @param reverseSortedPositions An array of positions to dismiss, sorted in descending
          *                               order for convenience.
          */

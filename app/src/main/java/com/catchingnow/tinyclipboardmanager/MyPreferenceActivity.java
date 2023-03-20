@@ -3,8 +3,10 @@ package com.catchingnow.tinyclipboardmanager;
 import android.content.Intent;
 import android.os.Build;
 import android.preference.PreferenceActivity;
-import android.support.v4.content.LocalBroadcastManager;
+//import android.support.v4.content.LocalBroadcastManager;
 import android.view.KeyEvent;
+
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 /**
  * Created by heruoxin on 15/2/28.
