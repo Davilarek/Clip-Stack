@@ -2,6 +2,8 @@ package com.catchingnow.tinyclipboardmanager;
 
 import android.annotation.TargetApi;
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.app.job.JobInfo;
@@ -18,9 +20,6 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-//import android.support.v4.app.NotificationCompat;
-//import android.support.v4.app.NotificationManagerCompat;
-//import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -46,20 +45,19 @@ public class CBWatcherService extends Service {
     public final static String ON_DESTROY = "onCBWatcherServiceDestroy";
 
     public final static int JOB_ID = 1;
-    public int NUMBER_OF_CLIPS = 5; //3-6
-
     private final static String NOTIFICATION_GROUP = "notification_group";
+    private static final int NOTIFICATION_ID = 1;
+    public int NUMBER_OF_CLIPS = 5; //3-6
+    protected boolean isStarred = false;
+    protected boolean temporaryStop = false;
+    boolean allowService = true;
+    boolean allowNotification = true;
     private Context mContext;
     private NotificationManagerCompat notificationManager;
     private ClipboardManager clipboardManager;
     private SharedPreferences preference;
     private Storage db;
     private Handler mHandler;
-
-    boolean allowService = true;
-    boolean allowNotification = true;
-    protected boolean isStarred = false;
-    protected boolean temporaryStop = false;
     private boolean pinOnTop = false;
     private int notificationPriority = 0;
     private int isMyActivitiesOnForeground = 0;
@@ -69,6 +67,26 @@ public class CBWatcherService extends Service {
             performClipboardCheck();
         }
     };
+
+    public static void startCBService(Context context, boolean refreshNotification) {
+        startCBService(context, refreshNotification, true, 0);
+    }
+
+    public static void startCBService(Context context, int myActivitiesOnForegroundMessage) {
+        startCBService(context, false, true, myActivitiesOnForegroundMessage);
+    }
+
+    public static void startCBService(Context context, boolean refreshNotification, boolean checkClipboardNow) {
+        startCBService(context, refreshNotification, checkClipboardNow, 0);
+    }
+
+    public static void startCBService(Context context, boolean forceShowNotification, boolean checkClipboardNow, int myActivitiesOnForegroundMessage) {
+        Intent intent = new Intent(context, CBWatcherService.class)
+                .putExtra(INTENT_EXTRA_FORCE_SHOW_NOTIFICATION, forceShowNotification)
+                .putExtra(INTENT_EXTRA_CHECK_CLIPBOARD_NOW, checkClipboardNow)
+                .putExtra(INTENT_EXTRA_MY_ACTIVITY_ON_FOREGROUND_MESSAGE, myActivitiesOnForegroundMessage);
+        context.startService(intent);
+    }
 
     @Override
     public void onCreate() {
@@ -86,6 +104,16 @@ public class CBWatcherService extends Service {
         } else {
             bindJobScheduler();
         }
+
+//        createNotificationChannel();
+//
+//        Notification notification = new NotificationCompat.Builder(this, "default")
+//                .setContentTitle(getString(R.string.app_name))
+//                .setContentText("Running in the background...")
+//                .setSmallIcon(R.drawable.icon)
+//                .build();
+//
+//        startForeground(NOTIFICATION_ID, notification);
         super.onCreate();
     }
 
@@ -129,7 +157,7 @@ public class CBWatcherService extends Service {
                             mContext,
                             toastText,
                             Toast.LENGTH_SHORT
-                            ).show();
+                    ).show();
                 }
             });
         }
@@ -145,6 +173,16 @@ public class CBWatcherService extends Service {
         }
 
         return START_STICKY;
+    }
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("default",
+                    "Default",
+                    NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
     }
 
     @Override
@@ -167,7 +205,7 @@ public class CBWatcherService extends Service {
                 .setRequiresCharging(true)
                 .setRequiresDeviceIdle(true)
                 .setRequiredNetworkType(JobInfo.NETWORK_TYPE_UNMETERED)
-                .setPeriodic(24*60*60*1000)
+                .setPeriodic(24 * 60 * 60 * 1000)
                 .setPersisted(true)
                 .build();
         JobScheduler jobScheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
@@ -399,27 +437,6 @@ public class CBWatcherService extends Service {
         notificationManager.notify(0, n);
     }
 
-    public static void startCBService(Context context, boolean refreshNotification) {
-        startCBService(context, refreshNotification, true, 0);
-    }
-
-    public static void startCBService(Context context, int myActivitiesOnForegroundMessage) {
-        startCBService(context, false, true, myActivitiesOnForegroundMessage);
-    }
-
-    public static void startCBService(Context context, boolean refreshNotification, boolean checkClipboardNow) {
-        startCBService(context, refreshNotification, checkClipboardNow, 0);
-    }
-
-
-    public static void startCBService(Context context, boolean forceShowNotification, boolean checkClipboardNow, int myActivitiesOnForegroundMessage) {
-        Intent intent = new Intent(context, CBWatcherService.class)
-                .putExtra(INTENT_EXTRA_FORCE_SHOW_NOTIFICATION, forceShowNotification)
-                .putExtra(INTENT_EXTRA_CHECK_CLIPBOARD_NOW, checkClipboardNow)
-                .putExtra(INTENT_EXTRA_MY_ACTIVITY_ON_FOREGROUND_MESSAGE, myActivitiesOnForegroundMessage);
-        context.startService(intent);
-    }
-
     private class NotificationClipListAdapter {
 
         private int buttonNumber = 9999;
@@ -503,14 +520,14 @@ public class CBWatcherService extends Service {
                                 R.drawable.ic_notification_action_play
                                 :
                                 R.drawable.ic_notification_action_pause
-                        );
+                );
                 Intent pauseIntent = new Intent(context, CBWatcherService.class)
                         .putExtra(INTENT_EXTRA_TEMPORARY_STOP, !temporaryStop);
                 PendingIntent pPauseIntent = PendingIntent.getService(context,
                         buttonNumber++,
                         pauseIntent,
                         PendingIntent.FLAG_UPDATE_CURRENT
-                        );
+                );
                 theClipView.setOnClickPendingIntent(R.id.clip_copy_button, pPauseIntent);
             } else {
                 clips.add(clipObject);
