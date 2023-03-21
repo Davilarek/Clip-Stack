@@ -4,7 +4,38 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Clip-Stack/app/src/main/res/drawable/background_fab.xml" value="0.196" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/layout-sw600dp-v21/activity_main.xml" value="0.16875" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/layout-sw600dp/activity_main.xml" value="0.16875" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/layout-sw600dp/view_main_recycler.xml" value="0.141015625" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/layout-v21/activity_editor.xml" value="0.18802083333333333" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/layout-v21/activity_main.xml" value="0.225" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/layout-v21/activity_main_card.xml" value="0.225" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/layout-v21/activity_main_dialog.xml" value="0.225" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/layout-v21/floating_window.xml" value="0.18802083333333333" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/layout-w520dp-v21/activity_main_card.xml" value="0.19047619047619047" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/layout-w520dp/activity_main_card.xml" value="0.19047619047619047" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/layout/activity_backup.xml" value="0.18802083333333333" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/layout/activity_backup_card.xml" value="0.18802083333333333" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/layout/activity_backup_card_empty.xml" value="0.18802083333333333" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/layout/activity_editor.xml" value="0.225" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/layout/activity_main_card.xml" value="0.22" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/layout/activity_main_dialog.xml" value="0.18802083333333333" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/layout/activity_setting.xml" value="0.18802083333333333" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/layout/app_widget.xml" value="0.18802083333333333" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/layout/app_widget_card.xml" value="0.18802083333333333" />
         <entry key="..\:/Clip-Stack/app/src/main/res/layout/app_widget_card_empty.xml" value="0.18802083333333333" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/layout/floating_window.xml" value="0.18802083333333333" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/layout/notification_clip.xml" value="0.18802083333333333" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/layout/notification_clip_card.xml" value="0.18802083333333333" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/layout/view_main_recycler.xml" value="0.33" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/menu-large/menu_editor.xml" value="0.141015625" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/menu-sw600dp/menu_main.xml" value="0.141015625" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/menu/menu_backup.xml" value="0.18802083333333333" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/menu/menu_editor.xml" value="0.18802083333333333" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/menu/menu_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/xml-v21/preference.xml" value="0.225" />
+        <entry key="..\:/Clip-Stack/app/src/main/res/xml/preference.xml" value="0.225" />
       </map>
     </option>
   </component>
@@ -47,7 +78,7 @@
       </value>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_16" project-jdk-name="1.7" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
 </project>

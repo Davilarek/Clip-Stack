@@ -45,6 +45,7 @@ public class ActivityEditor extends MyActionBarActivity {
         editText = (EditText) findViewById(R.id.edit_text);
         mFAB = (ImageButton) findViewById(R.id.main_fab);
         mToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+//        setSupportActionBar(mToolbar);
         editText.setText(oldText);
         editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override

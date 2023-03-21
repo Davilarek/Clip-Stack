@@ -29,15 +29,15 @@
             android:entries="@array/pref_click_behavior_descriptions"
             android:entryValues="@array/pref_click_behavior_values" />
     </PreferenceCategory>
-    <PreferenceCategory
-        android:dependency="pref_start_service"
-        android:title="@string/pref_floating_button">
-        <SwitchPreference
-            android:title="@string/pref_floating_button"
-            android:key="pref_floating_button_switch"
-            android:summary="@string/pref_floating_button_summary"
-            android:defaultValue="true" />
-    </PreferenceCategory>
+<!--    <PreferenceCategory-->
+<!--        android:dependency="pref_start_service"-->
+<!--        android:title="@string/pref_floating_button">-->
+<!--        <SwitchPreference-->
+<!--            android:title="@string/pref_floating_button"-->
+<!--            android:key="pref_floating_button_switch"-->
+<!--            android:summary="@string/pref_floating_button_summary"-->
+<!--            android:defaultValue="true" />-->
+<!--    </PreferenceCategory>-->
     <PreferenceCategory
         android:dependency="pref_start_service"
         android:title="@string/pref_notification_title">
@@ -72,12 +72,12 @@
                 android:action="android.intent.action.VIEW"
                 android:data="https://goo.gl/dpwozO" />
         </Preference>
-        <Preference
-            android:title="@string/pref_rate_title"
-            android:summary="@string/pref_rate_summary">
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="https://goo.gl/1KigA6" />
-        </Preference>
+<!--        <Preference-->
+<!--            android:title="@string/pref_rate_title"-->
+<!--            android:summary="@string/pref_rate_summary">-->
+<!--            <intent-->
+<!--                android:action="android.intent.action.VIEW"-->
+<!--                android:data="https://goo.gl/1KigA6" />-->
+<!--        </Preference>-->
     </PreferenceCategory>
 </PreferenceScreen>

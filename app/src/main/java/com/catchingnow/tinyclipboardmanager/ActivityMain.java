@@ -95,7 +95,7 @@ public class ActivityMain extends MyActionBarActivity {
         queryText = "";
 
         mFAB = (ImageButton) findViewById(R.id.main_fab);
-        mRecLayout = (LinearLayout) findViewById(R.id.recycler_layout);
+        mRecLayout = findViewById(R.id.recycler_layout);
         mToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         if (getString(R.string.screen_type).contains("phone")) {
             mToolbar.setNavigationIcon(R.drawable.icon_shadow);
